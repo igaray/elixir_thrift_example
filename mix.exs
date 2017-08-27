@@ -21,6 +21,10 @@ defmodule ElixirThriftExample.Mixfile do
   # Dependencies listed here are available only for this project
   # and cannot be accessed from applications inside the apps folder
   defp deps do
-    []
+    [
+      {:cowboy, "~> 1.1"},
+      {:distillery, "~> 1.5"},
+      {:thrift, "~> 1.3"},
+    ]
   end
 end
