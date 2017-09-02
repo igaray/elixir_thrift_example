@@ -5,5 +5,5 @@
 %%
 
 
--include("base_types.hrl").
+-include("example_types.hrl").
 

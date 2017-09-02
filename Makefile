@@ -1,6 +1,6 @@
-.PHONY: all clean gen_thrift deps client server
+.PHONY: all clean gen_thrift deps example run
 
-all: gen_thrift deps client server
+all: clean gen_thrift deps example
 
 clean:
 	@echo "Cleaning..."
@@ -10,18 +10,21 @@ gen_thrift: gen_thrift_erlang
 	@echo "Generated thrift bindings"
 
 gen_thrift_erlang:
-	@rm -rf apps/common/src/gen
-	@mkdir apps/common/src/gen
-	@thrift -r -v -out apps/common/src/gen --gen erl apps/common/src/thrift/base.thrift
-	@rm -rf apps/common/include/gen/*
-	@cp apps/common/src/gen/*.hrl apps/common/include/gen
+	@rm -rf apps/example/src/gen
+	@mkdir apps/example/src/gen
+	@thrift -r -v -out apps/example/src/gen --gen erl apps/example/src/thrift/example.thrift
+	@rm -rf apps/example/include/gen/*
+	@cp apps/example/src/gen/*.hrl apps/example/include/gen
 
 deps:
 	@mix deps.get
 	@mix deps.compile
 
-client:
-	@echo "Building client"
+compile:
+	@mix compile
 
-server:
-	@echo "Building server"
+example: compile
+	@mix release --name=example --env=dev --no-tar
+
+run:
+	_build/dev/rel/example/bin/example console

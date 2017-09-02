@@ -44,20 +44,10 @@ end
 # when running `mix release`, the first release in the file
 # will be used by default
 
-release :elixir_thrift_example_client do
+release :example do
   set version: "0.1.0"
   set applications: [
     :runtime_tools,
-    client: :permanent,
-    common: :permanent,
-  ]
-end
-
-release :elixir_thrift_example_server do
-  set version: "0.1.0"
-  set applications: [
-    :runtime_tools,
-    common: :permanent,
-    server: :permanent,
+    example: :permanent
   ]
 end
