@@ -16,15 +16,30 @@ struct_info('Envelope') ->
 ;
 
 struct_info('Payload') ->
-  {struct, [{1, {struct, {'example_types', 'Message1'}}},
-          {2, {struct, {'example_types', 'Message2'}}}]}
+  {struct, [{1, {struct, {'example_types', 'Request1'}}},
+          {2, {struct, {'example_types', 'Request2'}}},
+          {3, {struct, {'example_types', 'Message1'}}}]}
 ;
 
-struct_info('Message1') ->
+struct_info('Request1') ->
   {struct, [{1, string}]}
 ;
 
-struct_info('Message2') ->
+struct_info('Response1') ->
+  {struct, [{1, i32},
+          {2, string}]}
+;
+
+struct_info('Request2') ->
+  {struct, [{1, i64}]}
+;
+
+struct_info('Response2') ->
+  {struct, [{1, i32},
+          {2, i64}]}
+;
+
+struct_info('Message1') ->
   {struct, [{1, i64}]}
 ;
 
@@ -36,33 +51,58 @@ struct_info_ext('Envelope') ->
 ;
 
 struct_info_ext('Payload') ->
-  {struct, [{1, optional, {struct, {'example_types', 'Message1'}}, 'm1', undefined},
-          {2, optional, {struct, {'example_types', 'Message2'}}, 'm2', undefined}]}
+  {struct, [{1, optional, {struct, {'example_types', 'Request1'}}, 'r1', undefined},
+          {2, optional, {struct, {'example_types', 'Request2'}}, 'r2', undefined},
+          {3, optional, {struct, {'example_types', 'Message1'}}, 'm1', undefined}]}
 ;
 
-struct_info_ext('Message1') ->
+struct_info_ext('Request1') ->
   {struct, [{1, required, string, 'data', undefined}]}
 ;
 
-struct_info_ext('Message2') ->
+struct_info_ext('Response1') ->
+  {struct, [{1, required, i32, 'result', undefined},
+          {2, required, string, 'data', undefined}]}
+;
+
+struct_info_ext('Request2') ->
+  {struct, [{1, required, i64, 'data', undefined}]}
+;
+
+struct_info_ext('Response2') ->
+  {struct, [{1, required, i32, 'result', undefined},
+          {2, required, i64, 'data', undefined}]}
+;
+
+struct_info_ext('Message1') ->
   {struct, [{1, required, i64, 'data', undefined}]}
 ;
 
 struct_info_ext(_) -> erlang:error(function_clause).
 
 struct_names() ->
-  ['Envelope', 'Payload', 'Message1', 'Message2'].
+  ['Envelope', 'Payload', 'Request1', 'Response1', 'Request2', 'Response2', 'Message1'].
 
-enum_info('Type') ->
+enum_info('Error') ->
   [
-    {'MESSAGE_1', 0},
-    {'MESSAGE_2', 1}
+    {'NONE', 0},
+    {'ERROR1', 1},
+    {'ERROR2', 2}
+  ];
+
+enum_info('MessageType') ->
+  [
+    {'REQUEST1', 0},
+    {'RESPONSE1', 1},
+    {'REQUEST2', 2},
+    {'RESPONSE2', 3},
+    {'MESSAGE1', 4}
   ];
 
 enum_info(_) -> erlang:error(function_clause).
 
 enum_names() ->
-  ['Type'].
+  ['Error', 'MessageType'].
 
 exception_names() ->
   [].

@@ -1,29 +1,48 @@
 namespace csharp ElixirThriftExample
 
-enum Type {
-    MESSAGE_1,
-    MESSAGE_2
+enum Error {
+    NONE,
+    ERROR1,
+    ERROR2
 }
 
-struct Envelope
-{
-    1: required Type type;
+enum MessageType {
+    REQUEST1,
+    RESPONSE1,
+    REQUEST2,
+    RESPONSE2,
+    MESSAGE1
+}
+
+struct Envelope {
+    1: required MessageType type;
     2: required Payload payload;
 }
 
-union Payload
-{
-    1: Message1 m1;
-    2: Message2 m2;
+union Payload {
+    1: Request1 r1;
+    2: Request2 r2;
+    3: Message1 m1;
 }
 
-struct Message1
-{
+struct Request1 {
     1: required string data;
 }
 
-struct Message2
-{
+struct Response1 {
+    1: required Error result;
+    2: required string data;
+}
+
+struct Request2 {
     1: required i64 data;
 }
 
+struct Response2 {
+    1: required Error result;
+    2: required i64 data;
+}
+
+struct Message1 {
+    1: required i64 data;
+}

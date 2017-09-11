@@ -1,8 +1,15 @@
 -ifndef(_example_types_included).
 -define(_example_types_included, yeah).
 
--define(EXAMPLE_TYPE_MESSAGE_1, 0).
--define(EXAMPLE_TYPE_MESSAGE_2, 1).
+-define(EXAMPLE_ERROR_NONE, 0).
+-define(EXAMPLE_ERROR_ERROR1, 1).
+-define(EXAMPLE_ERROR_ERROR2, 2).
+
+-define(EXAMPLE_MESSAGETYPE_REQUEST1, 0).
+-define(EXAMPLE_MESSAGETYPE_RESPONSE1, 1).
+-define(EXAMPLE_MESSAGETYPE_REQUEST2, 2).
+-define(EXAMPLE_MESSAGETYPE_RESPONSE2, 3).
+-define(EXAMPLE_MESSAGETYPE_MESSAGE1, 4).
 
 %% struct 'Envelope'
 
@@ -12,18 +19,36 @@
 
 %% struct 'Payload'
 
--record('Payload', {'m1' :: 'Message1'(),
-                    'm2' :: 'Message2'()}).
+-record('Payload', {'r1' :: 'Request1'(),
+                    'r2' :: 'Request2'(),
+                    'm1' :: 'Message1'()}).
 -type 'Payload'() :: #'Payload'{}.
+
+%% struct 'Request1'
+
+-record('Request1', {'data' :: string() | binary()}).
+-type 'Request1'() :: #'Request1'{}.
+
+%% struct 'Response1'
+
+-record('Response1', {'result' :: integer(),
+                      'data' :: string() | binary()}).
+-type 'Response1'() :: #'Response1'{}.
+
+%% struct 'Request2'
+
+-record('Request2', {'data' :: integer()}).
+-type 'Request2'() :: #'Request2'{}.
+
+%% struct 'Response2'
+
+-record('Response2', {'result' :: integer(),
+                      'data' :: integer()}).
+-type 'Response2'() :: #'Response2'{}.
 
 %% struct 'Message1'
 
--record('Message1', {'data' :: string() | binary()}).
+-record('Message1', {'data' :: integer()}).
 -type 'Message1'() :: #'Message1'{}.
-
-%% struct 'Message2'
-
--record('Message2', {'data' :: integer()}).
--type 'Message2'() :: #'Message2'{}.
 
 -endif.
