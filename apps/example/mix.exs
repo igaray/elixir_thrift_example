@@ -15,7 +15,7 @@ defmodule Example.Mixfile do
       start_permanent: Mix.env == :prod,
       thrift_files: thrift_files(),
       thrift_options: ~w[--gen erl:maps],
-      thrift_output: "src/gen"
+      thrift_output: "src/gen",
       thrift_version: ">= 0.9.3",
       version: "0.1.0",
     ]
@@ -29,12 +29,11 @@ defmodule Example.Mixfile do
   end
 
   defp thrift_files do
-    Mix.Utils.extract_files(["src/thrift"], [:thrift])
+    Mix.Utils.extract_files(["thrift"], [:thrift])
   end
 
   defp deps do
     [
-      {:thrift, "~> 1.3"}
     ]
   end
 end

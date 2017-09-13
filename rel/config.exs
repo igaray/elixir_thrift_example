@@ -46,8 +46,10 @@ end
 
 release :example do
   set version: "0.1.0"
-  set applications: [
-    :runtime_tools,
-    example: :permanent
-  ]
+  set applications:
+    [
+      :runtime_tools,
+      :thrift,
+      example: :permanent,
+    ]
 end

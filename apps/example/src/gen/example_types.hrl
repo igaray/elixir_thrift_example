@@ -19,9 +19,11 @@
 
 %% struct 'Payload'
 
--record('Payload', {'r1' :: 'Request1'(),
-                    'r2' :: 'Request2'(),
-                    'm1' :: 'Message1'()}).
+-record('Payload', {'req1' :: 'Request1'(),
+                    'rsp1' :: 'Response1'(),
+                    'req2' :: 'Request2'(),
+                    'rsp2' :: 'Response2'(),
+                    'msg1' :: 'Message1'()}).
 -type 'Payload'() :: #'Payload'{}.
 
 %% struct 'Request1'

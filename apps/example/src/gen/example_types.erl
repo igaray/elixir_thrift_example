@@ -17,8 +17,10 @@ struct_info('Envelope') ->
 
 struct_info('Payload') ->
   {struct, [{1, {struct, {'example_types', 'Request1'}}},
-          {2, {struct, {'example_types', 'Request2'}}},
-          {3, {struct, {'example_types', 'Message1'}}}]}
+          {2, {struct, {'example_types', 'Response1'}}},
+          {3, {struct, {'example_types', 'Request2'}}},
+          {4, {struct, {'example_types', 'Response2'}}},
+          {5, {struct, {'example_types', 'Message1'}}}]}
 ;
 
 struct_info('Request1') ->
@@ -51,9 +53,11 @@ struct_info_ext('Envelope') ->
 ;
 
 struct_info_ext('Payload') ->
-  {struct, [{1, optional, {struct, {'example_types', 'Request1'}}, 'r1', undefined},
-          {2, optional, {struct, {'example_types', 'Request2'}}, 'r2', undefined},
-          {3, optional, {struct, {'example_types', 'Message1'}}, 'm1', undefined}]}
+  {struct, [{1, optional, {struct, {'example_types', 'Request1'}}, 'req1', undefined},
+          {2, optional, {struct, {'example_types', 'Response1'}}, 'rsp1', undefined},
+          {3, optional, {struct, {'example_types', 'Request2'}}, 'req2', undefined},
+          {4, optional, {struct, {'example_types', 'Response2'}}, 'rsp2', undefined},
+          {5, optional, {struct, {'example_types', 'Message1'}}, 'msg1', undefined}]}
 ;
 
 struct_info_ext('Request1') ->

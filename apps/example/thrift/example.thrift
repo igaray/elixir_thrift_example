@@ -20,9 +20,11 @@ struct Envelope {
 }
 
 union Payload {
-    1: Request1 r1;
-    2: Request2 r2;
-    3: Message1 m1;
+    1: Request1 req1;
+    2: Response1 rsp1;
+    3: Request2 req2;
+    4: Response2 rsp2;
+    5: Message1 msg1;
 }
 
 struct Request1 {

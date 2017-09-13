@@ -1,6 +1,6 @@
 -module(types).
 
--include("../include/gen/example_types.hrl").
+% -include("../include/gen/example_types.hrl").
 
 % -export([type_to_tag/1]).
 % -export([tag_to_type/1]).
