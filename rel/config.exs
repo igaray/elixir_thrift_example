@@ -50,6 +50,8 @@ release :example do
     [
       :runtime_tools,
       :thrift,
+      :cowboy,
+      :gun,
       example: :permanent,
     ]
 end

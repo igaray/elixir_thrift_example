@@ -13,9 +13,14 @@ defmodule ElixirThriftExample.Mixfile do
   defp deps do
     [
       {:distillery, "~> 1.5"},
+
       {:ranch, git: "https://github.com/ninenines/ranch", ref: "1.4.0", override: true},
-      {:cowboy, git: "https://github.com/ninenines/cowboy.git", branch: "master"},
-      {:thrift, git: "git@github.com:pinterest/elixir-thrift.git", branch: "thrift_tng"},
+      {:cowlib, git: "https://github.com/ninenines/cowlib", ref: "2.0.0", override: true},
+      {:cowboy, git: "https://github.com/ninenines/cowboy", ref: "2.0.0"},
+
+      {:gun, git: "git@github.com:ninenines/gun", ref: "1.0.0-pre.4"},
+
+      {:thrift, git: "git@github.com:pinterest/elixir-thrift", branch: "master"},
     ]
   end
 end

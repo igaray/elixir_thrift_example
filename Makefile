@@ -1,4 +1,4 @@
-.PHONY: all clean gen_thrift deps example run
+.PHONY: all clean gen_thrift deps example run test
 
 all: clean compile release
 
@@ -9,7 +9,6 @@ clean:
 deps:
 	@echo "Dependencies..."
 	@mix deps.get
-	@mix deps.compile
 
 compile:
 	@echo "Compiling..."
@@ -21,6 +20,10 @@ release: compile
 
 run:
 	_build/dev/rel/example/bin/example console
+
+test:
+	@echo "Running tests..."
+	@mix test
 
 # gen_thrift_erlang:
 # 	@rm -rf apps/example/src/gen
